@@ -44,8 +44,40 @@ Fail!
 
 import re
 
-code_re = re.compile(r"^(\+?7|8)")
+
+reg_code_re = re.compile(r"^(\+?7|8)")
+sans_reg_phone_re = re.compile(r"^(?:[- ]?\(?\d\)?){10}$")
+non_digits_re = re.compile(r"[^0-9]")
 
 
 def format_telefon_numbers(text: str):
-    return
+    code_match = reg_code_re.match(text)
+
+    if code_match:
+        text = text[code_match.span()[1] :]
+
+    if not sans_reg_phone_re.match(text):
+        return "Fail!"
+
+    text = non_digits_re.sub("", text)
+
+    return f"+7 {text[:3]} {text[3:6]}-{text[6:8]}-{text[8:]}"
+
+
+def main():
+    tests = [
+        ("+7 123 456-78-90", "+7 123 456-78-90"),
+        ("8(123)456-78-90", "+7 123 456-78-90"),
+        ("1234567890", "+7 123 456-78-90"),
+        ("123456789", "Fail!"),
+        ("+9 123 456-78-90", "Fail!"),
+        ("+7 123 456+78=90", "Fail!"),
+    ]
+
+    for phone, expected in tests:
+        actual = format_telefon_numbers(phone)
+        assert actual == expected, f"{phone,} {expected=}, {actual=}"
+
+
+if __name__ == "__main__":
+    main()

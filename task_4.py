@@ -12,7 +12,7 @@
 # aZc   ---> a!Z!c
 # aZZc  ---> a!Z!!Z!c
 # aBaCa ---> a!B!a!C!a
-REGEXP_1 = ''   # регулярное выражение
+REGEXP_1 = r"[A-Z]", r"!\1!"  # регулярное выражение
 
 
 # abc    ---> abc
@@ -20,7 +20,7 @@ REGEXP_1 = ''   # регулярное выражение
 # azzzc  ---> azc
 # arrrrc ---> arc
 # xxxxxx ---> x
-REGEXP_2 = '' 
+REGEXP_2 = r"([a-z])\1*", r"\1"
 
 
 # this is text         ---> this is text
@@ -28,16 +28,16 @@ REGEXP_2 = ''
 # this is is is text   ---> this *is* text
 # this is text text    ---> this is *text*
 # this is is text text ---> this *is* *text*
-REGEXP_3 = '' 
+REGEXP_3 = r"(?<=[ ^])([a-z]+)( \1)+", r"*\1*"
 
 # one two three ---> two one three
 # dog cat wolf  ---> cat dog wolf
 # goose car rat ---> goose rat car
-REGEXP_4 = '' 
+REGEXP_4 = r"(?<=[ ^])([A-Za-z]+) ([A-Za-z]+)", r"\2 \1"
 
 
 # cat dog                     ---> cat dog
 # cat dog cat                 ---> cat dog cat
 # dog cat dog cat cat         ---> dog dog
 # dog cat dog rat rat cat cat ---> dog dog rat rat
-REGEXP_5 = '' 
+REGEXP_5 = r""
