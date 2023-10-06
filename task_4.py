@@ -12,7 +12,8 @@
 # aZc   ---> a!Z!c
 # aZZc  ---> a!Z!!Z!c
 # aBaCa ---> a!B!a!C!a
-REGEXP_1 = r"([A-Z])", r"!\1!"  # регулярное выражение
+PATTERN_1 = r"([A-Z])"
+REPL_1 = r"!\1!"
 
 
 # abc    ---> abc
@@ -20,7 +21,8 @@ REGEXP_1 = r"([A-Z])", r"!\1!"  # регулярное выражение
 # azzzc  ---> azc
 # arrrrc ---> arc
 # xxxxxx ---> x
-REGEXP_2 = r"([a-z])\1*", r"\1"
+PATTERN_2 = r"([a-z])\1*"
+REPL_2 = r"\1"
 
 
 # this is text         ---> this is text
@@ -28,16 +30,11 @@ REGEXP_2 = r"([a-z])\1*", r"\1"
 # this is is is text   ---> this *is* text
 # this is text text    ---> this is *text*
 # this is is text text ---> this *is* *text*
-REGEXP_3 = r"(?<=[ ^])([a-z]+)( \1)+", r"*\1*"
+PATTERN_3 = r"(?<=[ ^])([a-z]+)( \1)+"
+REPL_3 = r"*\1*"
 
 # one two three ---> two one three
 # dog cat wolf  ---> cat dog wolf
 # goose car rat ---> goose rat car
-REGEXP_4 = r"\b(\w{3}) (\w{3})\b", r"\2 \1"
-
-
-# cat dog                     ---> cat dog
-# cat dog cat                 ---> cat dog cat
-# dog cat dog cat cat         ---> dog dog
-# dog cat dog rat rat cat cat ---> dog dog rat rat
-REGEXP_5 = r"", ""  # ???
+PATTERN_4 = r"\b(\w{3}) (\w{3})\b"
+REPL_4 = r"\2 \1"

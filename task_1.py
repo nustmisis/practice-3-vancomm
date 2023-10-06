@@ -14,7 +14,7 @@ REGEXP_1 = r"[a-z]"
 # aaa bbb ccc ---> aaa, bbb, ccc
 # ddd eee fgh ---> ddd, eee, fgh
 # a1b c2d e3f ---> a1b, c2d, e3f
-REGEXP_2 = r"[a-z\d]+"
+REGEXP_2 = r"\S+"
 
 # a aa aaa ---> aa, aaa
 # b bb bbb ---> bb, bbb
@@ -26,18 +26,18 @@ REGEXP_3 = r"[a-z]{2,}"
 # 3.3.3.3 cccc 4.4.4.4    ---> 3.3.3.3, 4.4.4.4
 # 255.23.0.1 cccc 4.4.4.4 ---> 255.23.0.1, 4.4.4.4
 # 255.0.23.1 cccc 4.4.4.4 ---> 255.0.23.1, 4.4.4.4
-REGEXP_4 = r"(?:\d\.){3}\d"
+REGEXP_4 = r"(?:\d{1,3}\.){3}\d"
 
 # aaa Abbb ccc ---> Abbb
 # Aaa Abbb ccc ---> Aaa, Abbb
 # Caa Cbb Accc ---> Accc
-REGEXP_5 = r"[A-Z][a-z]+"
+REGEXP_5 = r"A[a-z]+"
 
 # a b c d e f ---> a, b, e, f
 # abcdef      ---> a, b, e, f
 # adf         ---> a, f
 # acf         ---> a, f
-REGEXP_6 = r"[^cd]"
+REGEXP_6 = r"[^cd ]"
 
 # aaa +1.0 bb              ---> +1.0
 # aaa -1.0 bb              ---> -1.0
@@ -49,4 +49,4 @@ REGEXP_7 = r"[-+]\d+\.\d+"
 # aaa 18-04-ABCD bbb 18.04.2016 ---> 18.04.2016
 # aaa 18/04/ABCD bbb 18/04/2016 ---> 18/04/2016
 # aaa 18/04/ABCD bbb 18/4/2016  ---> 18/4/2016
-REGEXP_8 = r"\d{2}([-./])\d{1,2}\1\d{4}"
+REGEXP_8 = r"\d{2}[-./]\d{1,2}[-./]\d{4}"
