@@ -1,4 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/6dAM1Md4)
+
+![Autograding](https://github.com/nustmisis/practice-3-vancomm/actions/workflows/classroom.yml/badge.svg)
+
 # PYTHON 2023 ДЗ 3
 Важно добавляете файлы и коммитите их на сервер в ваш репозиторий в NUSTMISIS
 
