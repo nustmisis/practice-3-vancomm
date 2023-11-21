@@ -30,17 +30,17 @@ import re
 
 
 reg_code_re = re.compile(r"^(\+?7|8)")
-sans_reg_phone_re = re.compile(r"^(?:[- ]?\(?\d\)?){10}$")
-non_digits_re = re.compile(r"[^0-9]")
+sans_reg_code_re = re.compile(r"^(?:[- \(]*\d\)?){10}$")
+non_digits_re = re.compile(r"\D")
 
 
-def format_phone_number(text):
-    code_match = reg_code_re.match(text)
+def format_phone_number(text: str):
+    reg_code_match = reg_code_re.match(text)
 
-    if code_match:
-        text = text[code_match.span()[1] :]
+    if reg_code_match:
+        text = text[reg_code_match.end() :]
 
-    if not sans_reg_phone_re.match(text):
+    if not sans_reg_code_re.match(text):
         return "Fail!"
 
     text = non_digits_re.sub("", text)
